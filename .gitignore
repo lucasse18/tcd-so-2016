@@ -1,0 +1,6 @@
+*
+!*/
+!.gitignore
+!README
+!/kernel/sys.c
+!/arch/x86/entry/syscalls/syscall_64.tbl
