@@ -1,3 +1,4 @@
 doc/*
 mount_shared.sh
 qemu.sh
+src/test

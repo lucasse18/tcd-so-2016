@@ -2,9 +2,9 @@
 
 Documentacao oficial encontrada em linux-4.4.XX/Documentation/adding-syscalls.txt
 
-Tutorial "quickstart": https://ulrichbuschbaum.wordpress.com/2016/05/03/linux-syscall-in-kernel-v4-5/
+Tutorial "quickstart": [linux-syscall-4.5](https://ulrichbuschbaum.wordpress.com/2016/05/03/linux-syscall-in-kernel-v4-5/)
 
-Passos para a compilação de um kernel genérico:
+Passos para a compilação do kernel:
 
 1. baixar ultimo kernel longterm 4.4 em [kernel.org](https://www.kernel.org/)
 2. descompactar o source code:
@@ -13,13 +13,19 @@ Passos para a compilação de um kernel genérico:
     tar -xf 'linux-4.4.XX.tar.xz'
     ```
 
-3. instalar pacotes necessarios para a compilação do kernel:
+3. sobrescrever o código com a versão modificada:
+
+    ```shell
+    cp -r src/{arch,include,kernel} linux-4.4.XX
+    ```
+
+4. instalar pacotes necessarios para a compilação do kernel:
 
     ```shell
     sudo apt-get build-dep linux
     ```
 
-4. copiar e atualizar a configuração do kernel atual:
+5. copiar e atualizar a configuração do kernel atual:
 
     ```shell
     cd linux-4.4.XX
@@ -27,13 +33,13 @@ Passos para a compilação de um kernel genérico:
     yes '' | make oldconfig
     ```
 
-5. (opcional) selecionar somente módulos usados pelo kernel atual:
+6. (opcional) selecionar somente módulos usados pelo kernel atual:
 
     ```shell
-    make localmodconfig
+    yes '' | make localmodconfig
     ```
 
-6. compilar e instalar kernel e módulos:
+7. compilar e instalar kernel e módulos:
 
     ```shell
     export MAX_JOBS=$(($(nproc) + 1)) MAX_LOAD=$(nproc)
