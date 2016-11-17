@@ -2431,7 +2431,13 @@ COMPAT_SYSCALL_DEFINE1(sysinfo, struct compat_sysinfo __user *, info)
 #endif /* CONFIG_COMPAT */
 
 SYSCALL_DEFINE1(hello, pid_t, pid) {
-  printk(KERN_ERR "Hello kernel world! PID=%d", pid);
+  struct task_struct *task;
+  task = pid_task(find_vpid(pid), PIDTYPE_PID);
+
+  if (task != NULL && task->real_parent != NULL)
+    printk(KERN_ERR "PID=%d, PPID=%d", pid, task->real_parent->pid);
+  else
+   return 1;
 
   return 0;
 }
