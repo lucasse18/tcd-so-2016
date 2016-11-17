@@ -13,7 +13,13 @@ Passos para a compilação de um kernel genérico:
     tar -xf 'linux-4.4.XX.tar.xz'
     ```
 
-3. copiar e atualizar a configuração do kernel atual:
+3. instalar pacotes necessarios para a compilação do kernel:
+
+    ```shell
+    sudo apt-get build-dep linux
+    ```
+
+4. copiar e atualizar a configuração do kernel atual:
 
     ```shell
     cd linux-4.4.XX
@@ -21,13 +27,13 @@ Passos para a compilação de um kernel genérico:
     yes '' | make oldconfig
     ```
 
-4. (opcional) selecionar somente módulos usados pelo kernel atual:
+5. (opcional) selecionar somente módulos usados pelo kernel atual:
 
     ```shell
     make localmodconfig
     ```
 
-5. compilar e instalar kernel e módulos:
+6. compilar e instalar kernel e módulos:
 
     ```shell
     export MAX_JOBS=$(($(nproc) + 1)) MAX_LOAD=$(nproc)
