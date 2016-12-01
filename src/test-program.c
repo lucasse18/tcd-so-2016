@@ -10,6 +10,7 @@ static inline long mysys_hello(pid_t pid) {
 }
 
 int main () {
+  printf("Some random text...\n");
   long ret_code;
   if((ret_code = mysys_hello(getpid())) < 0)
     perror("[ERROR]");

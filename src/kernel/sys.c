@@ -2434,8 +2434,10 @@ SYSCALL_DEFINE1(hello, pid_t, pid) {
   struct task_struct *task;
   task = pid_task(find_vpid(pid), PIDTYPE_PID);
 
-  if (task != NULL && task->real_parent != NULL)
+  if (task != NULL && task->real_parent != NULL) {
     printk(KERN_ERR "PID=%d, PPID=%d", pid, task->real_parent->pid);
+    printk(KERN_ERR "TTY Driver Name: %s", task->meu_tty_driver_name);
+  }
   else
    return 1;
 
